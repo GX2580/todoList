@@ -30,11 +30,6 @@ const props = defineProps({
   },
 })
 const emit = defineEmits(['toggle', 'edit'])
-// const props = defineProps({
-//   todo: {
-//     type: Object,
-//   },
-// })
 
 // 创建一个获得焦点的自定义指令, 约定: v-focus. vFocus
 const vFocus = {
