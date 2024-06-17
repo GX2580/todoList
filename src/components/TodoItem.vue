@@ -9,7 +9,7 @@
       @blur="handleEdit"
     />
     <span v-else @click="isEditing = true">{{ content }}</span>
-    <span>Delete</span>
+    <button>Delete</button>
   </li>
 </template>
 
