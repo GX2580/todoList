@@ -1,16 +1,17 @@
+<template>
+  <TodoHeader @add-todo="hadnleAddTodo"></TodoHeader>
+  <TodoList></TodoList>
+  <TodoFooter></TodoFooter>
+</template>
 <script setup>
 import { ref } from 'vue'
 import TodoList from './components/TodoList.vue'
 import TodoHeader from './components/TodoHeader.vue'
 import TodoFooter from './components/TodoFooter.vue'
+const hadnleAddTodo = (todo) => {
+  console.log(todo)
+}
 </script>
-
-<template>
-  <TodoHeader></TodoHeader>
-  <TodoList></TodoList>
-  <TodoFooter></TodoFooter>
-</template>
-
 <style>
 * {
   padding: 0;

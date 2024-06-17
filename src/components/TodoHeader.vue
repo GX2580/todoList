@@ -2,14 +2,35 @@
   <header class="todo-header">
     <h1>TodoList</h1>
     <div class="add-todo">
-      <input type="text" placeholder="Please enter your to-do items" />
-      <button>Add</button>
+      <input
+        type="text"
+        placeholder="Please enter your to-do items"
+        v-model.trim="content"
+      />
+      <button @click="addTodo">Add</button>
     </div>
   </header>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+const emit = defineEmits(['add-todo'])
+const content = ref('')
+const addTodo = () => {
+  if (content.value) {
+    const todo = {
+      id: Date.now(),
+      content: content.value,
+      done: false,
+    }
+
+    emit('add-todo', todo)
+    content.value = ''
+  } else {
+    alert('please enter you to-do items')
+    return
+  }
+}
 </script>
 
 <style scoped>
