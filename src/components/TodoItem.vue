@@ -7,6 +7,7 @@
       type="text"
       :value="content"
       @blur="handleEdit"
+      @keyup.enter="handleEdit"
     />
     <span v-else @click="isEditing = true">{{ content }}</span>
     <button>Delete</button>
