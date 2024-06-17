@@ -9,6 +9,7 @@
       @blur="handleEdit"
     />
     <span v-else @click="isEditing = true">{{ content }}</span>
+    <span>Delete</span>
   </li>
 </template>
 
@@ -59,48 +60,20 @@ const handleEdit = (event) => {
 }
 </script>
 <style scoped>
-.todo-list ul {
-  list-style: none;
-}
-
-.todo-list li {
-  list-style: none;
-  position: relative;
-  padding-inline: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-bottom: 1px solid #eee;
+.todo-item {
   display: flex;
   align-items: center;
+  height: 40px;
+  padding: 0 40px;
+  list-style: none;
+  border-bottom: 1px solid #eee;
 }
-
-.todo-list li:hover {
-  background-color: #ddd;
-}
-
-.todo-list li input[type='text'] {
+.todo-item span,
+.todo-item input[type='text'] {
   flex: 1;
-  margin-left: 10px;
-  border: none;
-  color: #00f;
+  margin: 0 20px;
 }
-
-.todo-list li span {
-  flex: 1;
-  margin-left: 20px;
-}
-
-.todo-list li span.done {
-  text-decoration: line-through;
-  color: red;
-}
-
-.todo-list li button {
-  padding-inline: 10px;
-  outline: none;
-}
-
-.todo-list li button:hover {
-  cursor: pointer;
+.todo-item button {
+  padding: 0 10px;
 }
 </style>

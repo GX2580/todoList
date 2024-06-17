@@ -16,7 +16,7 @@ import { ref } from 'vue'
 import TodoList from './components/TodoList.vue'
 import TodoHeader from './components/TodoHeader.vue'
 import TodoFooter from './components/TodoFooter.vue'
-import TodoListItem from './components/TodoListItem.vue'
+import TodoListItem from './components/TodoItem.vue'
 
 const todos = ref([])
 
