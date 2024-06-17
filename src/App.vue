@@ -1,5 +1,5 @@
 <template>
-  <div class="component-name">aaa</div>
+  <div class="component-name">todoList</div>
 </template>
 
 <script setup>
@@ -8,6 +8,7 @@ import { ref } from 'vue'
 
 <style scoped>
 .component-name {
-  text-align: center;
+  text-align: left;
+  font-size: 40px;
 }
 </style>
