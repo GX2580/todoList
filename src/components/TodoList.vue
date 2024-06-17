@@ -1,9 +1,9 @@
 <template>
   <main class="todo-list">
     <ul>
-      <li>
-        <input type="checkbox" />
-        <span>eat</span>
+      <li v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" v-model="todo.done" />
+        <span>{{ todo.content }}</span>
         <button>Delete</button>
       </li>
     </ul>
@@ -11,7 +11,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  todos: {
+    type: Array,
+    required: true,
+    default: () => [],
+  },
+})
 </script>
 
 <style scoped>
