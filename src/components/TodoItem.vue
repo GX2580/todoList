@@ -13,7 +13,6 @@
   </li>
 </template>
 
-<!-- 这个地方还是要自己去完成 -->
 <script setup>
 import { ref } from 'vue'
 const props = defineProps({
