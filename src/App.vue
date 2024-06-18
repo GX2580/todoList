@@ -1,14 +1,16 @@
 <template>
   <TodoHeader @add-todo="handleAddTodo"></TodoHeader>
-  <TodoList :todos="todos">
-    <TodoItem
-      v-for="todo in todos"
-      :key="todo.id"
-      v-bind="todo"
-      @toggle="handleToggle"
-      @edit="handleEdit"
-      @del="handleDel"
-    ></TodoItem>
+  <TodoList>
+    <draggable :list="todos" animation="300" item-key="id">
+      <template #item="{ element }">
+        <TodoItem
+          v-bind="element"
+          @toggle="handleToggle"
+          @edit="handleEdit"
+          @del="handleDel"
+        ></TodoItem>
+      </template>
+    </draggable>
   </TodoList>
   <TodoFooter
     :todos="todos"
@@ -23,7 +25,7 @@ import TodoHeader from './components/TodoHeader.vue'
 import TodoFooter from './components/TodoFooter.vue'
 import TodoItem from './components/TodoItem.vue'
 import useTodos from './hooks/useTodos.js'
-
+import draggable from 'vuedraggable'
 const {
   todos,
   handleAddTodo,
