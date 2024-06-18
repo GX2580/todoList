@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 const props = defineProps({
   id: {
-    type: String,
+    type: [String, Number],
     required: true,
   },
   content: {

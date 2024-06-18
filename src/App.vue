@@ -18,7 +18,7 @@
   ></TodoFooter>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import TodoList from './components/TodoList.vue'
 import TodoHeader from './components/TodoHeader.vue'
 import TodoFooter from './components/TodoFooter.vue'
@@ -54,6 +54,19 @@ const handleDel = (id) => {
   const index = todos.value.findIndex((todo) => todo.id === id)
   todos.value.splice(index, 1)
 }
+watch(
+  todos,
+  () => {
+    console.log('something changed')
+    localStorage.setItem('todos', JSON.stringify(todos.value))
+  },
+  { deep: true }
+)
+onMounted(() => {
+  //update data
+  const data = JSON.parse(localStorage.getItem('todos') || '[]')
+  todos.value = data
+})
 </script>
 <style>
 * {
