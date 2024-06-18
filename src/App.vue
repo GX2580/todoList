@@ -1,31 +1,28 @@
 <template>
-  <TodoHeader></TodoHeader>
-  <TodoList :todos="todos">
-    <TodoItem
-      v-for="todo in todos"
-      :key="todo.id"
-      v-bind="todo"
-      @toggle="handleToggle"
-      @edit="handleEdit"
-      @del="handleDel"
-    ></TodoItem>
+  <TodoHeader />
+  <TodoList>
+    <draggable :list="todos" animation="300" item-key="id">
+      <template #item="{ element }">
+        <TodoItem v-bind="element"></TodoItem>
+      </template>
+    </draggable>
   </TodoList>
-  <TodoFooter
-    :todos="todos"
-    @toggle-all="handleToggleAll"
-    @clear-done="handleClearDone"
-    @clear-all="handleClearAll"
-  ></TodoFooter>
+  <TodoFooter :todos="todos" />
 </template>
+
 <script setup>
-import TodoList from './components/TodoList.vue'
+import { storeToRefs } from 'pinia'
+import draggable from 'vuedraggable'
+
 import TodoHeader from './components/TodoHeader.vue'
-import TodoFooter from './components/TodoFooter.vue'
+import TodoList from './components/TodoList.vue'
 import TodoItem from './components/TodoItem.vue'
+import TodoFooter from './components/TodoFooter.vue'
 
-
-
+import { useTodoStore } from './stores/todos'
+const { todos } = storeToRefs(useTodoStore())
 </script>
+
 <style>
 * {
   padding: 0;

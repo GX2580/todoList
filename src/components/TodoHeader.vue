@@ -13,24 +13,24 @@
 </template>
 
 <script setup>
-import { useTodoStore } from '..todos/stores/todos'
-const { addTodo } = useTodoStore()
 import { ref } from 'vue'
-const emit = defineEmits(['add-todo'])
+import { useTodoStore } from '../stores/todos'
+
+const { addTodo } = useTodoStore()
+
 const content = ref('')
-const Todo = () => {
+
+const handleAdd = () => {
   if (content.value) {
     const todo = {
       id: Date.now(),
       content: content.value,
       done: false,
     }
-
-    emit('add-todo', todo)
+    addTodo(todo)
     content.value = ''
   } else {
-    alert('please enter you to-do items')
-    return
+    alert('Please enter your to-do items')
   }
 }
 </script>
