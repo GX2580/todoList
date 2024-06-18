@@ -1,5 +1,5 @@
 <template>
-  <TodoHeader @add-todo="handleAddTodo"></TodoHeader>
+  <TodoHeader></TodoHeader>
   <TodoList :todos="todos">
     <TodoItem
       v-for="todo in todos"
@@ -22,18 +22,9 @@ import TodoList from './components/TodoList.vue'
 import TodoHeader from './components/TodoHeader.vue'
 import TodoFooter from './components/TodoFooter.vue'
 import TodoItem from './components/TodoItem.vue'
-import useTodos from './hooks/useTodos.js'
 
-const {
-  todos,
-  handleAddTodo,
-  handleToggle,
-  handleEdit,
-  handleDel,
-  handleToggleAll,
-  handleClearDone,
-  handleClearAll,
-} = useTodos()
+
+
 </script>
 <style>
 * {

@@ -7,16 +7,18 @@
         placeholder="Please enter your to-do items"
         v-model.trim="content"
       />
-      <button @click="addTodo">Add</button>
+      <button @click="handleAdd">Add</button>
     </div>
   </header>
 </template>
 
 <script setup>
+import { useTodoStore } from '..todos/stores/todos'
+const { addTodo } = useTodoStore()
 import { ref } from 'vue'
 const emit = defineEmits(['add-todo'])
 const content = ref('')
-const addTodo = () => {
+const Todo = () => {
   if (content.value) {
     const todo = {
       id: Date.now(),
