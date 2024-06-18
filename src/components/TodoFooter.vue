@@ -1,14 +1,41 @@
 <template>
-  <footer class="todo-footer">
-    <input type="checkbox" />
-    <span>Done: 0 / All: 2</span>
-    <button>Clear Done</button>
-    <button>Clear All</button>
+  <footer v-if="todos.length" class="todo-footer">
+    <input type="checkbox" :checked="allDone" @change="toggleAll" />
+    <span>Done: {{ doneCount }} / All: {{ allCount }}</span>
+    <button @click="clearDone">Clear Done</button>
+    <button @click="clearAll">Clear All</button>
   </footer>
+  <h2 v-else class="none-todo">Nothing</h2>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const props = defineProps({
+  todos: {
+    type: Array,
+    required: true,
+    default: () => [],
+  },
+})
+
+const emit = defineEmits(['toggle-all', 'clear-done', 'clear-all'])
+
+const allDone = computed(() => props.todos.every((todo) => todo.done))
+const doneCount = computed(() => props.todos.filter((todo) => todo.done).length)
+const allCount = computed(() => props.todos.length)
+
+const toggleAll = (event) => {
+  emit('toggle-all', event.target.checked)
+}
+
+const clearDone = () => {
+  emit('clear-done')
+}
+
+const clearAll = () => {
+  emit('clear-all')
+}
 </script>
 
 <style scoped>
@@ -28,5 +55,11 @@ import { ref } from 'vue'
   margin-left: 10px;
   padding-inline: 10px;
   cursor: pointer;
+}
+
+.none-todo {
+  text-align: center;
+  margin-top: 20px;
+  color: #888;
 }
 </style>

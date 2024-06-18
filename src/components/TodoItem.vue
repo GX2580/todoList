@@ -10,7 +10,7 @@
       @keyup.enter="handleEdit"
     />
     <span v-else @click="isEditing = true">{{ content }}</span>
-    <button>Delete</button>
+    <button @click="$emit('del', id)">删除</button>
   </li>
 </template>
 
@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 const props = defineProps({
   id: {
-    type: [String, Number],
+    type: String,
     required: true,
   },
   content: {
@@ -30,7 +30,12 @@ const props = defineProps({
     required: true,
   },
 })
-const emit = defineEmits(['toggle', 'edit'])
+const emit = defineEmits(['toggle', 'edit', 'del'])
+// const props = defineProps({
+//   todo: {
+//     type: Object,
+//   },
+// })
 
 // 创建一个获得焦点的自定义指令, 约定: v-focus. vFocus
 const vFocus = {
@@ -54,6 +59,7 @@ const handleEdit = (event) => {
   }
 }
 </script>
+
 <style scoped>
 .todo-item {
   display: flex;
