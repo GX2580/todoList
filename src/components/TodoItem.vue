@@ -9,7 +9,9 @@
       @blur="handleEdit"
       @keyup.enter="handleEdit"
     />
-    <span v-else @click="isEditing = true">{{ content }}</span>
+    <span v-else @click="isEditing = true" :class="{ delete: done }">{{
+      content
+    }}</span>
     <button @click="$emit('del', id)">删除</button>
   </li>
 </template>
@@ -71,5 +73,9 @@ const handleEdit = (event) => {
 }
 .todo-item button {
   padding: 0 10px;
+}
+.todo-item .delete {
+  color: red;
+  text-decoration: line-through;
 }
 </style>
